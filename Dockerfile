@@ -11,9 +11,16 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
     build-essential libasound2-dev libjack-dev portaudio19-dev libsndfile1  \
   && apt-get clean
 
+# installing  library
 COPY ./requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
 
+# deploy magenta-session module
 COPY . /src/
 
-WORKDIR /src/
+# port
+EXPOSE 8080
+
+# deamon run
+WORKDIR /src/server/
+CMD python server.py
