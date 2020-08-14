@@ -2,7 +2,7 @@ import os
 import sys
 from datetime import datetime
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from magenta.models.melody_rnn import melody_rnn_config_flags
 from magenta.models.melody_rnn import melody_rnn_model
 from magenta.models.melody_rnn import melody_rnn_sequence_generator

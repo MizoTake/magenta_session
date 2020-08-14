@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import magenta
 import magenta.models.melody_rnn.melody_rnn_train as mt
 from magenta.models.melody_rnn import melody_rnn_config_flags
@@ -25,7 +25,7 @@ def main(unused_argv):
         with tf.gfile.Open(os.path.join(train_dir, "hparams"), mode="w") as f:
             f.write("\t".join([mt.FLAGS.config, mt.FLAGS.hparams]))
 
-        graph = events_rnn_graph.build_graph("train", config, train_file)
+        graph = events_rnn_graph.get_build_graph_fn("train", config, train_file)
         events_rnn_train.run_training(
             graph, train_dir, mt.FLAGS.num_training_steps, mt.FLAGS.summary_frequency, checkpoints_to_keep=mt.FLAGS.num_checkpoints)
 
@@ -44,7 +44,7 @@ def main(unused_argv):
             config.hparams.batch_size = examples
             num_batches = 1
       
-        graph = events_rnn_graph.build_graph("eval", config, eval_file)
+        graph = events_rnn_graph.get_build_graph_fn("eval", config, eval_file)
         events_rnn_train.run_eval(
             graph, train_dir, eval_dir, num_batches)
 

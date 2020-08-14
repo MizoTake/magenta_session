@@ -2,8 +2,8 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
-import tensorflow as tf
-from magenta.scripts.convert_dir_to_note_sequences import note_sequence_io
+import tensorflow.compat.v1.compat.v1 as tf
+# from magenta.scripts.convert_dir_to_note_sequences import note_sequence_io
 from magenta.scripts.convert_dir_to_note_sequences import convert_directory
 import scripts.target as tgt
 

@@ -2,7 +2,7 @@ import os
 import time
 import tempfile
 import pretty_midi
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import magenta
 from magenta.models.melody_rnn import melody_rnn_config_flags
 from magenta.models.melody_rnn import melody_rnn_model

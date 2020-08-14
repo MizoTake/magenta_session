@@ -1,2 +1,4 @@
-magenta==0.3.2
-Flask==0.12
+google-auth<2.0dev,>=1.19.1
+tensorflow-probability==0.7.0
+note-seq==0.0.1
+magenta==2.1.0

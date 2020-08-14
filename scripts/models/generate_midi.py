@@ -2,7 +2,7 @@ import os
 import sys
 from datetime import datetime
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import magenta
 from magenta.models.melody_rnn import melody_rnn_model
 from magenta.models.melody_rnn import melody_rnn_config_flags
@@ -40,7 +40,7 @@ def main(unused_argv):
         model=melody_rnn_model.MelodyRnnModel(config),
         details=config.details,
         steps_per_quarter=config.steps_per_quarter,
-        bundle=magenta.music.read_bundle_file(model_path))
+        bundle=magenta.models.shared.sequence_generator_bundle.read_bundle_file(model_path))
     
     mg.FLAGS.output_dir = tgt.GENERATED_DIR
     mg.run_with_flags(generator)
